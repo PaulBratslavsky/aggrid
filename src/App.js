@@ -14,9 +14,12 @@ function parseDataFromApi(data) {
       likes,
       developer: { firstName, lastName },
     } = item;
+    console.log(item);
     return {
       id,
       name,
+      firstName,
+      lastName,
       fullName: `${firstName} ${lastName}`,
       likes: likes.length,
     };
@@ -59,8 +62,20 @@ export default function App() {
       filter: true,
     },
     {
-      headerName: 'Developer',
-      field: 'fullName',
+      headerName: 'First Name',
+      field: 'firstName',
+      sortable: true,
+      filter: true,
+    },
+    {
+      headerName: 'Last Name',
+      field: 'lastName',
+      sortable: true,
+      filter: true,
+    },
+    {
+      headerName: 'Full Name',
+      valueGetter: ({data}) => `${data.firstName} ${data.lastName}`,
       sortable: true,
       filter: true,
     },
